@@ -22,10 +22,16 @@ export default function Offers() {
           {OFFERS.map((offer, i) => (
             <Reveal key={offer.title} delay={i * 0.12}>
               <article className="offer-card">
-                <span className="offer-card__tag">{offer.title}</span>
+                <div className="offer-card__top">
+                  <span className="offer-card__num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="offer-card__tag">{offer.title}</span>
+                </div>
                 <h3>{offer.deal}</h3>
                 <p>{offer.note}</p>
                 <a
+                  className="offer-card__cta"
                   href={waLink(offer.wa)}
                   target="_blank"
                   rel="noopener noreferrer"

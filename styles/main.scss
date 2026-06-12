@@ -178,6 +178,18 @@ ul {
   }
 }
 
+/* Reveal wrappers inside card grids must stretch so all cards in a
+   row share the same height and bottom edge */
+.rooms__grid > .reveal,
+.offers__grid > .reveal,
+.blog-grid > .reveal {
+  display: flex;
+
+  > * {
+    width: 100%;
+  }
+}
+
 /* ── Header ───────────────────────────────────────────────────── */
 .header {
   position: fixed;
@@ -391,12 +403,17 @@ ul {
     inset: 0;
     z-index: 2;
     background: linear-gradient(
-      180deg,
-      rgba(13, 42, 25, 0.55) 0%,
-      rgba(13, 42, 25, 0.18) 38%,
-      rgba(13, 42, 25, 0.22) 62%,
-      rgba(13, 42, 25, 0.78) 100%
-    );
+        90deg,
+        rgba(13, 42, 25, 0.42) 0%,
+        rgba(13, 42, 25, 0) 60%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(13, 42, 25, 0.55) 0%,
+        rgba(13, 42, 25, 0.18) 38%,
+        rgba(13, 42, 25, 0.38) 58%,
+        rgba(13, 42, 25, 0.88) 100%
+      );
   }
 
   &__content {
@@ -414,6 +431,8 @@ ul {
     max-width: 760px;
 
     .kicker {
+      color: #e3cf9e; // lighter brass — the default reads too dim on bright slides
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
       animation: capRise 1.1s $ease both;
     }
 
@@ -425,14 +444,16 @@ ul {
       line-height: 1.05;
       letter-spacing: 0.01em;
       margin: 1rem 0 1.1rem;
+      text-shadow: 0 2px 28px rgba(0, 0, 0, 0.4);
       animation: capRise 1.1s 0.12s $ease both;
     }
 
     p {
-      font-size: clamp(0.98rem, 1.6vw, 1.15rem);
-      font-weight: 200;
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      font-weight: 300;
       letter-spacing: 0.04em;
-      color: rgba(231, 229, 223, 0.88);
+      color: $cream;
+      text-shadow: 0 1px 16px rgba(0, 0, 0, 0.6);
       max-width: 520px;
       animation: capRise 1.1s 0.24s $ease both;
     }
@@ -494,10 +515,11 @@ ul {
     flex-direction: column;
     align-items: center;
     gap: 0.55rem;
-    color: rgba(231, 229, 223, 0.6);
+    color: rgba(231, 229, 223, 0.85);
     font-size: 0.6rem;
     letter-spacing: 0.4em;
     text-transform: uppercase;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
 
     &::after {
       content: "";
@@ -770,21 +792,61 @@ ul {
 }
 
 .offer-card {
+  position: relative;
   border: 1px solid $line-light;
   border-radius: $radius-lg;
-  padding: 2.2rem 1.9rem;
+  padding: 2.1rem 1.9rem 1.7rem;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  background: rgba(13, 42, 25, 0.35);
+  gap: 0.85rem;
+  background: linear-gradient(
+    160deg,
+    rgba(231, 229, 223, 0.05),
+    rgba(13, 42, 25, 0.45) 55%
+  );
   backdrop-filter: blur(4px);
+  overflow: hidden;
   transition: border-color 0.5s $ease, transform 0.5s $ease,
-    background 0.5s $ease;
+    box-shadow 0.5s $ease;
+
+  // brass hairline across the top
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.9rem;
+    right: 1.9rem;
+    height: 1px;
+    background: linear-gradient(90deg, $brass, transparent);
+  }
 
   &:hover {
     border-color: $brass-soft;
-    background: rgba(13, 42, 25, 0.55);
     transform: translateY(-5px);
+    box-shadow: 0 26px 50px -28px rgba(0, 0, 0, 0.6);
+
+    .offer-card__num {
+      opacity: 0.55;
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__num {
+    font-family: $font-display;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: $brass;
+    opacity: 0.32;
+    transition: opacity 0.5s $ease;
   }
 
   &__tag {
@@ -797,8 +859,8 @@ ul {
   h3 {
     font-family: $font-display;
     font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 1.2;
+    font-size: 1.8rem;
+    line-height: 1.18;
   }
 
   p {
@@ -808,20 +870,29 @@ ul {
     flex: 1;
   }
 
-  a {
+  &__cta {
+    margin-top: 1.2rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid $line-light;
     font-size: 0.7rem;
     letter-spacing: 0.26em;
     text-transform: uppercase;
     color: $cream;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.4rem;
-    transition: color 0.35s, gap 0.35s $ease;
+    justify-content: space-between;
+    transition: color 0.35s, letter-spacing 0.35s $ease;
+
+    svg {
+      transition: transform 0.35s $ease;
+    }
 
     &:hover {
       color: $brass;
-      gap: 0.8rem;
+
+      svg {
+        transform: translateX(5px);
+      }
     }
   }
 }
