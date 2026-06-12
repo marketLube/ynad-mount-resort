@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import Rooms from "@/components/Rooms";
 import Offers from "@/components/Offers";
+import Amenities from "@/components/Amenities";
 import Testimonials from "@/components/Testimonials";
 import Reels from "@/components/Reels";
 import BlogTeaser from "@/components/BlogTeaser";
@@ -30,6 +31,7 @@ export default function HomePage() {
       <Intro />
       <Rooms />
       <Offers />
+      <Amenities />
       <Testimonials />
       <Reels />
       <BlogTeaser />

@@ -79,6 +79,46 @@ export const OFFERS = [
   },
 ];
 
+export const AMENITIES = [
+  {
+    name: "Infinity Pool",
+    image: u("photo-1668276490368-409a6002756d", 1100),
+    desc: "Swim to the edge and watch the valley fall away below — best at sunrise, when the mist is still in the trees.",
+    included: true,
+  },
+  {
+    name: "Restaurant",
+    image: u("photo-1414235077428-338989a2e8c0", 1100),
+    desc: "Kerala home cooking and slow continental classics, made fresh with produce from the hills around us.",
+    included: false,
+    badge: "À la carte",
+  },
+  {
+    name: "Spa",
+    image: u("photo-1544161515-4ab6ce6db874", 1100),
+    desc: "Traditional Ayurvedic therapies and deep-rest massages, scented with the cardamom air of Wayanad.",
+    included: false,
+  },
+  {
+    name: "Gym",
+    image: u("photo-1534438327276-14e5300c3a48", 1100),
+    desc: "A compact, well-kept fitness room for travellers who keep their routine even above the clouds.",
+    included: true,
+  },
+  {
+    name: "Jeep Safari",
+    image: u("photo-1681901026203-8a56e396ee93", 1100),
+    desc: "Open-top rides through forest tracks and viewpoints — we arrange permits, drivers and the early start.",
+    included: false,
+  },
+  {
+    name: "Plantation Tour",
+    image: u("photo-1650884986392-984358536050", 1100),
+    desc: "A guided walk through Rippon's working tea estates, ending with a tasting of the hills' own brew.",
+    included: true,
+  },
+];
+
 export const TESTIMONIALS = [
   {
     name: "Anjali & Rohit",

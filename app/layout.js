@@ -88,10 +88,13 @@ const resortJsonLd = {
   checkinTime: "13:00",
   checkoutTime: "11:00",
   amenityFeature: [
-    { "@type": "LocationFeatureSpecification", name: "Mist-view balconies" },
-    { "@type": "LocationFeatureSpecification", name: "Tea garden walks" },
-    { "@type": "LocationFeatureSpecification", name: "Family vintage home" },
-    { "@type": "LocationFeatureSpecification", name: "Candlelight dinners" },
+    { "@type": "LocationFeatureSpecification", name: "Infinity pool", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Restaurant", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Spa", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Gym", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Jeep safari", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Tea plantation tour", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Mist-view balconies", value: true },
   ],
 };
 

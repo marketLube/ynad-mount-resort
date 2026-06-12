@@ -39,6 +39,9 @@ export default function Footer() {
               <Link href="/#offers">Offers</Link>
             </li>
             <li>
+              <Link href="/#amenities">Amenities</Link>
+            </li>
+            <li>
               <Link href="/#experience">The Experience</Link>
             </li>
             <li>

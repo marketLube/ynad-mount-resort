@@ -14,6 +14,11 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+// keep anchored sections clear of the fixed header
+[id] {
+  scroll-margin-top: 92px;
+}
+
 body {
   font-family: $font-body;
   font-weight: 300;
@@ -893,6 +898,161 @@ ul {
       svg {
         transform: translateX(5px);
       }
+    }
+  }
+}
+
+/* ── Amenities ────────────────────────────────────────────────── */
+.amenities {
+  background: $ivory;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.2rem, 2.6vw, 2rem);
+
+    @media (max-width: $bp-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-sm) {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+      margin-inline: auto;
+    }
+  }
+
+  // grid > reveal wrapper must stretch like the other card grids
+  &__grid > .reveal {
+    display: flex;
+
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.amenity-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: $shadow-soft;
+  outline: none;
+
+  img {
+    object-fit: cover;
+    transition: transform 1.2s $ease;
+  }
+
+  // permanent soft gradient so the name is always readable
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(13, 42, 25, 0.05) 40%,
+      rgba(13, 42, 25, 0.82) 100%
+    );
+    transition: background 0.6s $ease, opacity 0.6s $ease;
+    pointer-events: none;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    color: $cream;
+    background: rgba(13, 42, 25, 0.55);
+    border: 1px solid rgba(231, 229, 223, 0.35);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.5s $ease, transform 0.5s $ease;
+
+    &.is-included {
+      background: rgba(185, 157, 107, 0.92);
+      border-color: transparent;
+      color: #fff;
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 2;
+    padding: 1.5rem 1.5rem 1.4rem;
+    color: $cream;
+
+    h3 {
+      font-family: $font-display;
+      font-weight: 400;
+      font-size: 1.6rem;
+      letter-spacing: 0.02em;
+      transition: transform 0.6s $ease;
+    }
+
+    p {
+      font-size: 0.86rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(231, 229, 223, 0.92);
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: max-height 0.6s $ease, opacity 0.6s $ease,
+        transform 0.6s $ease, margin-top 0.6s $ease;
+    }
+  }
+
+  &:hover,
+  &:focus-visible {
+    img {
+      transform: scale(1.06);
+    }
+
+    &::after {
+      background: linear-gradient(
+        180deg,
+        rgba(13, 42, 25, 0.25) 0%,
+        rgba(13, 42, 25, 0.92) 100%
+      );
+    }
+
+    .amenity-card__badge {
+      opacity: 1;
+      transform: none;
+    }
+
+    .amenity-card__caption p {
+      max-height: 9em;
+      opacity: 1;
+      transform: none;
+      margin-top: 0.55rem;
+    }
+  }
+
+  // touch devices have no hover — keep description & badge visible
+  @media (hover: none) {
+    &__badge {
+      opacity: 1;
+      transform: none;
+    }
+
+    &__caption p {
+      max-height: 9em;
+      opacity: 1;
+      transform: none;
+      margin-top: 0.55rem;
     }
   }
 }
