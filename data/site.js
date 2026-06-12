@@ -2,7 +2,7 @@ export const SITE = {
   name: "YNAD Mount Resort",
   legalName: "YNAD Mount Resort, Wayanad",
   tagline: "A sanctuary above the mist",
-  baseUrl: "https://www.ynadmountresort.com",
+  baseUrl: "https://www.ynadresort.in",
   phone: "+91 99470 59008",
   whatsappNumber: "919947059008",
   email: "ynadresort@gmail.com",
